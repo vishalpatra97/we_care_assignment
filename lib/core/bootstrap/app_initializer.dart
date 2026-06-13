@@ -2,10 +2,9 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:we_care/app/app.dart';
-import 'package:we_care/core/config/app_config.dart';
 import 'package:we_care/core/config/app_constant.dart';
 import 'package:we_care/core/di/injection.dart';
+import 'package:we_care/main.dart';
 
 class AppInitializer {
   static Future<void> initialize() async {
