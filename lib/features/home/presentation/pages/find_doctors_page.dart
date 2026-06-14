@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:we_care/core/routes/routes.dart';
 
 class FindDoctorsPage extends StatefulWidget {
   const FindDoctorsPage({super.key});
@@ -60,7 +62,9 @@ class _FindDoctorsPageState extends State<FindDoctorsPage> {
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return InkWell(
-                onTap: () {},
+                onTap: () {
+                  context.pushNamed(Routes.doctorProfile);
+                },
                 child: Card(
                   margin: EdgeInsets.zero,
                   child: Padding(

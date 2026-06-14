@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:we_care/core/app/cubit/app_roll_cubit.dart';
+import 'package:we_care/core/constants/app_roles.dart';
 import 'package:we_care/core/routes/routes.dart';
+import 'package:we_care/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:we_care/features/splash/widget/app_role_button.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -31,54 +36,95 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          SizedBox(
-            height: double.infinity,
-            width: double.infinity,
-            child: Container(color: Colors.white.withOpacity(0.8)),
-          ),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              FlutterLogo(size: 100),
-              SizedBox(height: 16),
-              Text(
-                'WeCare',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      body: BlocConsumer<AppRoleCubit, AppRoleEnum>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          final cubit = context.read<AppRoleCubit>();
+          return Stack(
+            alignment: Alignment.center,
+            children: [
+              SizedBox(
+                height: double.infinity,
+                width: double.infinity,
+                child: Container(color: Colors.white.withOpacity(0.8)),
               ),
-              Text('Your health, always first', style: TextStyle(fontSize: 16)),
-            ],
-          ),
-          Positioned(
-            bottom: 32,
-            child: SafeArea(
-              bottom: true,
-              top: false,
-              left: false,
-              right: false,
-              child: _isInitialized
-                  ? SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          context.go(Routes.login);
-                        },
-                        child: Text('Login'),
-                      ),
-                    )
-                  : Column(
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  FlutterLogo(size: 100),
+                  SizedBox(height: 16),
+                  Text(
+                    'WeCare',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'Your health, always first',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
+              Positioned(
+                bottom: 32,
+                child: SafeArea(
+                  bottom: true,
+                  top: false,
+                  left: false,
+                  right: false,
+                  child: _isInitialized
+                      ? SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              context.go(Routes.login);
+                            },
+                            child: Text('Login'),
+                          ),
+                        )
+                      : Column(
+                          children: [
+                            CircularProgressIndicator(),
+                            SizedBox(height: 8),
+                            Text('Initializing...'),
+                          ],
+                        ),
+                ),
+              ),
+
+              Positioned(
+                top: 30,
+                child: SafeArea(
+                  bottom: false,
+                  child: SizedBox(
+                    height: 60,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: Row(
                       children: [
-                        CircularProgressIndicator(),
-                        SizedBox(height: 8),
-                        Text('Initializing...'),
+                        AppRoleButton(
+                          AppRoleEnum.doctor,
+                          title: 'Doctor',
+                          selectedEnum: cubit.state,
+                          onPressed: () {
+                            cubit.switchRole(AppRoleEnum.doctor);
+                          },
+                        ),
+                        SizedBox(width: 16),
+                        AppRoleButton(
+                          AppRoleEnum.patient,
+                          title: 'Patient',
+                          selectedEnum: cubit.state,
+                          onPressed: () {
+                            cubit.switchRole(AppRoleEnum.patient);
+                          },
+                        ),
                       ],
                     ),
-            ),
-          ),
-        ],
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

@@ -1,33 +1,29 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:get_it/get_it.dart';
 
 class SupabaseService {
-  final SupabaseClient client = Supabase.instance.client;
+  static SupabaseService? _instance;
+  static SupabaseClient? _client;
 
-  SupabaseService();
+  SupabaseService._();
 
-  User? get currentUser => client.auth.currentUser;
-  Session? get currentSession => client.auth.currentSession;
-
-  //OAuth
-  Future<bool> signInWithGoogle() async {
-    return await client.auth.signInWithOAuth(OAuthProvider.google);
+  static Future<SupabaseService> initialize({
+    required String url,
+    required String publishableKey,
+  }) async {
+    if (_instance == null) {
+      await Supabase.initialize(url: url, publishableKey: publishableKey);
+      _client = Supabase.instance.client;
+      _instance = SupabaseService._();
+    }
+    return _instance!;
   }
 
-  Future<bool> signInWithApple() async {
-    return await client.auth.signInWithOAuth(OAuthProvider.apple);
-  }
+  SupabaseClient get client => _client!;
 
-  Future<AuthResponse> signInWithEmail(String email, String password) async {
-    return await client.auth.signInWithPassword(
-      email: email,
-      password: password,
-    );
-  }
+  // Database shortcuts
+  SupabaseQueryBuilder from(String table) => client.from(table);
 
-  Future<void> signOut() async {
-    await client.auth.signOut();
-  }
+  Future<void> signOut() => client.auth.signOut();
 
   Stream<AuthState> get authStateChanges => client.auth.onAuthStateChange;
 }
