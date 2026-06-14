@@ -35,7 +35,7 @@ class Routes {
 
   static final List<GoRoute> allRoutes = [
     GoRoute(
-      path: '/$splash',
+      path: splash,
       name: splash,
       builder: (context, state) => const SplashPage(),
     ),
