@@ -23,7 +23,7 @@ class AppointmentCard extends StatelessWidget {
                       style: TextStyle(color: Colors.white70),
                     ),
                     Text(
-                      "Dr. John Doe",
+                      "Doctor Name",
                       style: Theme.of(
                         context,
                       ).textTheme.titleMedium?.copyWith(color: Colors.white),

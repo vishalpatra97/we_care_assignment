@@ -159,22 +159,26 @@ class DoctorDashboardPage extends StatelessWidget {
                     child: Row(
                       children: [
                         Expanded(
-                          child: Card(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white.withAlpha(40),
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.people),
-                                  Text(
-                                    "My Patients",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 15),
-                                  ),
-                                ],
+                          child: GestureDetector(
+                            onTap: () =>
+                                context.pushNamed(Routes.doctorMyPatient),
+                            child: Card(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withAlpha(40),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.people),
+                                    Text(
+                                      "My Patients",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 15),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

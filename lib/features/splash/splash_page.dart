@@ -117,7 +117,9 @@ class _SplashPageState extends State<SplashPage> {
                           height: 50,
                           child: ElevatedButton(
                             onPressed: () {
-                              context.go(Routes.login);
+                              state == AppRoleEnum.patient
+                                  ? context.goNamed(Routes.login)
+                                  : context.goNamed(Routes.doctorLogin);
                             },
                             child: Text(
                               state == AppRoleEnum.patient

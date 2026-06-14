@@ -91,7 +91,7 @@ class _FindDoctorsPageState extends State<FindDoctorsPage> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        "Dr. John Doe",
+                                        "Doctor Name",
                                         style: Theme.of(
                                           context,
                                         ).textTheme.titleLarge,

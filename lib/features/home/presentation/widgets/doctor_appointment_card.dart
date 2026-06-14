@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:we_care/core/routes/routes.dart';
 
 class DoctorAppointmentCard extends StatelessWidget {
   const DoctorAppointmentCard({super.key});
@@ -11,29 +13,21 @@ class DoctorAppointmentCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "TODAY - 10:30 AM",
-                      style: TextStyle(color: Colors.white70),
-                    ),
-                    Text(
-                      "Dr. John Doe",
-                      style: Theme.of(
-                        context,
-                      ).textTheme.titleMedium?.copyWith(color: Colors.white),
-                    ),
-                    Text(
-                      "Cardiologist",
-                      style: TextStyle(color: Colors.white70),
-                    ),
-                  ],
+                Text(
+                  "TODAY - 10:30 AM",
+                  style: TextStyle(color: Colors.white70),
                 ),
+                Text("In-Person", style: TextStyle(color: Colors.white70)),
+              ],
+            ),
+            SizedBox(height: 5),
+            Row(
+              children: [
                 CircleAvatar(
                   radius: 30,
                   backgroundColor: Colors.white.withAlpha(100),
@@ -43,6 +37,22 @@ class DoctorAppointmentCard extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
+                SizedBox(width: 10),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Patient Name",
+                      style: Theme.of(
+                        context,
+                      ).textTheme.titleMedium?.copyWith(color: Colors.white),
+                    ),
+                    Text(
+                      "30M-Followup-Chest Pain",
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ],
+                ),
               ],
             ),
             SizedBox(height: 8),
@@ -51,7 +61,8 @@ class DoctorAppointmentCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () =>
+                        context.pushNamed(Routes.doctorAppointmentDetails),
                     child: Text("View Details"),
                   ),
                 ),
@@ -63,7 +74,7 @@ class DoctorAppointmentCard extends StatelessWidget {
                       foregroundColor: Colors.white,
                     ),
                     onPressed: () {},
-                    child: Text("Reschedule"),
+                    child: Text("Start"),
                   ),
                 ),
               ],

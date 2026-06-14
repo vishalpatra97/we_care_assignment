@@ -6,6 +6,7 @@ import 'package:we_care/features/booking/presentation/pages/confirmed_booking_pa
 import 'package:we_care/features/booking/presentation/pages/medical_records_page.dart';
 import 'package:we_care/features/booking/presentation/pages/select_slot_page.dart';
 import 'package:we_care/features/doctor_schedule/presentation/pages/doctor_appointment_details_page.dart';
+import 'package:we_care/features/doctor_schedule/presentation/pages/doctor_my_patient.dart';
 import 'package:we_care/features/doctor_schedule/presentation/pages/doctor_schedule_page.dart';
 import 'package:we_care/features/doctor_schedule/presentation/pages/record_saved_page.dart';
 import 'package:we_care/features/home/presentation/pages/dashboard_page.dart';
@@ -30,6 +31,7 @@ class Routes {
   static const String doctorSchedule = 'doctor-schedule';
   static const String recordSaved = 'record-saved';
   static const String doctorAppointmentDetails = 'doctor-appointment-details';
+  static const String doctorMyPatient = 'doctor-my-patient';
 
   static final List<GoRoute> allRoutes = [
     GoRoute(path: splash, builder: (context, state) => const SplashPage()),
@@ -95,6 +97,11 @@ class Routes {
       path: '/$recordSaved',
       name: recordSaved,
       builder: (context, state) => const RecordSavedPage(),
+    ),
+    GoRoute(
+      path: '/$doctorMyPatient',
+      name: doctorMyPatient,
+      builder: (context, state) => const MyPatientPage(),
     ),
   ];
 }

@@ -133,7 +133,9 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
                         Align(
                           alignment: Alignment.centerRight,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              context.go(Routes.doctorDashboard);
+                            },
                             child: const Text('Forgot password?'),
                           ),
                         ),
