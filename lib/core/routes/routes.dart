@@ -34,8 +34,16 @@ class Routes {
   static const String doctorMyPatient = 'doctor-my-patient';
 
   static final List<GoRoute> allRoutes = [
-    GoRoute(path: splash, builder: (context, state) => const SplashPage()),
-    GoRoute(path: login, builder: (context, state) => const LoginPage()),
+    GoRoute(
+      path: '/$splash',
+      name: splash,
+      builder: (context, state) => const SplashPage(),
+    ),
+    GoRoute(
+      path: '/$login',
+      name: login,
+      builder: (context, state) => const LoginPage(),
+    ),
     GoRoute(
       path: '/$signup',
       name: signup,
