@@ -32,7 +32,7 @@ class Routes {
   static const String doctorAppointmentDetails = 'doctor-appointment-details';
 
   static final List<GoRoute> allRoutes = [
-    GoRoute(path: splash, builder: (context, state) => const RecordSavedPage()),
+    GoRoute(path: splash, builder: (context, state) => const SplashPage()),
     GoRoute(path: login, builder: (context, state) => const LoginPage()),
     GoRoute(
       path: '/$signup',
