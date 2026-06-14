@@ -46,22 +46,63 @@ class _SplashPageState extends State<SplashPage> {
               SizedBox(
                 height: double.infinity,
                 width: double.infinity,
-                child: Container(color: Colors.white.withOpacity(0.8)),
+                child: Container(color: Colors.white.withValues(alpha: 0.8)),
               ),
               Column(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
-                  FlutterLogo(size: 100),
-                  SizedBox(height: 16),
-                  Text(
-                    'WeCare',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    'Your health, always first',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ],
+                children: state == AppRoleEnum.patient
+                    ? const [
+                        FlutterLogo(size: 100),
+                        SizedBox(height: 16),
+                        Text(
+                          'WeCare',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Your health, always first',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Trusted by 2M+ patients across India',
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      ]
+                    : [
+                        FlutterLogo(size: 100),
+                        SizedBox(height: 16),
+                        Text(
+                          'WeCare',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 8,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Theme.of(context).primaryColor.withAlpha(30),
+                          ),
+                          child: Text(
+                            'for Doctors',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Trusted by 2M+ patients across India',
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      ],
               ),
               Positioned(
                 bottom: 32,
@@ -78,7 +119,11 @@ class _SplashPageState extends State<SplashPage> {
                             onPressed: () {
                               context.go(Routes.login);
                             },
-                            child: Text('Login'),
+                            child: Text(
+                              state == AppRoleEnum.patient
+                                  ? 'Login'
+                                  : 'Sign In to Practice',
+                            ),
                           ),
                         )
                       : Column(
